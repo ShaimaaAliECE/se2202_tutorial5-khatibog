@@ -10,16 +10,15 @@ createGameBoard()
 
 function createGameBoard()
 {
-    for (let i = 0 ; i < 9 ; i++)
-    {
+    for (let i = 0 ; i < 9 ; i++) {
         let cll = 'c' + (i+1);
         let btn = document.createElement('button');
         btn.innerHTML = '[ ]';
         document.getElementByID(cll).appendChild(btn);
-    }
+    };
     // Programatically add a button with square brackets enclosing an empty space to each cell in the gameboard
    
-}
+};
 
 // Programatically add 'takeCell' as an event listener to all the buttons on the board
 let btns = document.querySelectorAll('button');
@@ -39,16 +38,16 @@ function takeCell(event)
 
     if (nextPlayer == 'X')
     {
-        event.target.innerHTML = '[X]'
+        event.target.innerHTML = nextPlayer;
+        nextPlayer = 'O';
         event.target.disabled = true;
-        nextPlayer = 'O'
         document.getElementByID("next-lbl").innerHTML = nextPlayer;
     } else {
-        event.target.innerHTML = '[O]'
+        event.target.innerHTML = 'O';
         event.target.disabled = true;
-        nextPlayer = 'X'
+        nextPlayer = 'X';
         document.getElementByID("next-lbl").innerHTML = nextPlayer;
-    }
+    };
     // Check if the game is over
     if (isGameOver())
     {
