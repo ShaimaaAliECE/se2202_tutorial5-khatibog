@@ -53,10 +53,10 @@ function takeCell(event)
     {
         // let the lable with the id 'game-over-lbl' display the words 'Game Over' inside <h1> element
         document.getElementByID("game-over-lbl").innerHTML = "<h1> Game Over </h1>";
-    }
+    };
 
     // I'll leave declaring the winner for your intrinsic motivation, it's not required for this assignment 
-}
+};
 
 function isGameOver()
 {
@@ -69,5 +69,5 @@ function isGameOver()
        count++;
     } else { return false;};
 };
-    if (counter == 9){return true;};
+    if (count == 9){return true;};
 };
