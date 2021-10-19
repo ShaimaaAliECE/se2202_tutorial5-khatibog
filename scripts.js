@@ -63,14 +63,12 @@ function isGameOver()
 {
     // This function returns true if all the buttons are disabled and false otherwise 
    let count = 0;
-   for (i = 0 ; i < 9 ; i++){
+   for (i = 0 ; i < 9 ; i++)
+   {
        if(btns[i].disabled == true)
+       {
        count++;
-    }
-
-    if (count == 9)
-        return true;
-    else
-        return false;
-      
-}
+    } else { return false;};
+};
+    if (counter == 9){return true;};
+};
