@@ -3,22 +3,25 @@ let nextPlayer = 'X'; // takes a value of either 'X' or 'O' according to the gam
 //initialize the game
 
 // use the value stored in the nextPlayer variable to indicate who the next player is
-document.getElementById("next-lbl").innerHTML = nextPlayer;
+let keremLbl = document.getElementById("next-lbl");
+keremLbl.innerHTML = nextPlayer;
 
 //This call will create the buttons needed for the gameboard.
 createGameBoard()
 
 function createGameBoard()
 {
-    for (let i = 0 ; i < 9 ; i++) {
-        let cll = 'c' + (i+1);
-        let button = document.createElement('button');
-        button.innerHTML = '[ ]';
-        document.getElementByID(cll).appendChild(button);
-    };
     // Programatically add a button with square brackets enclosing an empty space to each cell in the gameboard
-   
-};
+    for (let i=0; i<9; i++)
+    {
+        let button = document.createElement('button');
+        button.innerHTML = "[ ]";
+
+        let buttonElement = document.getElementById("c" + (i + 1));
+
+        buttonElement.appendChild(button);
+    }
+}
 
 // Programatically add 'takeCell' as an event listener to all the buttons on the board
 let btns = document.querySelectorAll('button');
@@ -32,42 +35,44 @@ function takeCell(event)
 {
     /*
         When the button is clicked, the space inside its square brackets is replaced by the value in the nextPlayer before switching it
-    */
+    */    
+    event.target.innerHTML = nextPlayer;
+    nextPlayer === "X" 
+        ? nextPlayer = "O" 
+        : nextPlayer = "X";
 
-    // Make sure the button is clickable only once (I didn't mention how to do that, look it up :) )
+    
+        // Make sure the button is clickable only once (I didn't mention how to do that, look it up 🙂 )
+    event.target.disabled = true;
+    document.getElementById("next-lbl").innerHTML = nextPlayer;
 
-    if (nextPlayer == "X")
-    {
-        event.target.innerHTML = nextPlayer;
-        nextPlayer = "O";
-        event.target.disabled = true;
-        document.getElementByID("next-lbl").innerHTML = nextPlayer;
-    } else {
-        event.target.innerHTML = 'O';
-        event.target.disabled = true;
-        nextPlayer = 'X';
-        document.getElementByID("next-lbl").innerHTML = nextPlayer;
-    };
     // Check if the game is over
     if (isGameOver())
     {
         // let the lable with the id 'game-over-lbl' display the words 'Game Over' inside <h1> element
-        document.getElementByID("game-over-lbl").innerHTML = "<h1> Game Over </h1>";
-    };
+        let gameOver = document.getElementById("game-over-lbl");
+        gameOver.innerHTML = "<h1> GAME OVER </h1>";
+    }
 
     // I'll leave declaring the winner for your intrinsic motivation, it's not required for this assignment 
-};
+
+}
 
 function isGameOver()
 {
     // This function returns true if all the buttons are disabled and false otherwise 
-   let count = 0;
-   for (i = 0 ; i < 9 ; i++)
-   {
-       if(btns[i].disabled == true)
-       {
-       count++;
-    } else { return false;};
-};
-    if (count == 9){return true;};
-};
+    let counter = 0;
+
+    let btns = document.querySelectorAll('button');
+    for (let i=0; i<btns.length; i++)
+    
+    {
+        if (btns[i].disabled === true) {
+            counter++;
+        }
+    }
+    
+    if (counter === 9) { return true }
+    
+    return false
+}
